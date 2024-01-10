@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:newnew_favorite_places/models/place.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:newnew_favorite_places/models/places.dart';
 import 'package:newnew_favorite_places/providers/user_provider.dart';
 import 'package:newnew_favorite_places/widgets/image_input.dart';
 import 'package:newnew_favorite_places/widgets/location_input.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddPlaceScreen extends ConsumerStatefulWidget {
   const AddPlaceScreen({super.key});
@@ -16,14 +16,14 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
-  File? _selectedImage;
-  PlaceLocation? _selectedLocation;
   @override
   void dispose() {
-    _titleController.dispose();
     super.dispose();
+    _titleController.dispose();
   }
 
+  File? _selectedImage;
+  PlaceLocation? _selectedLocation;
   void savePlace() {
     final enteredTitle = _titleController.text;
     if (enteredTitle.isEmpty ||
@@ -33,7 +33,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
     }
     ref
         .read(userPlaceProvider.notifier)
-        .addPlace(_titleController.text, _selectedImage!, _selectedLocation!);
+        .addPlace(enteredTitle, _selectedImage!, _selectedLocation!);
     Navigator.of(context).pop();
   }
 
@@ -41,7 +41,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Place'),
+        title: const Text('Add places'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
@@ -65,7 +65,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
               height: 15,
             ),
             LocationInput(
-              onSelectLocation: (location) {
+              onPickLocation: (location) {
                 _selectedLocation = location;
               },
             ),

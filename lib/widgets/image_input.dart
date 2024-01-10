@@ -37,21 +37,25 @@ class _ImageInputState extends State<ImageInput> {
         onTap: takePicture,
         child: Image.file(
           _selectedImage!,
-          width: double.infinity,
           fit: BoxFit.cover,
         ),
       );
     }
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1,
+              color:
+                  Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
+            ),
+          ),
+          height: 250,
+          width: double.infinity,
+          child: content,
         ),
-      ),
-      height: 250,
-      width: double.infinity,
-      child: content,
+      ],
     );
   }
 }
