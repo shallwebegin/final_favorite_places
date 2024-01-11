@@ -16,12 +16,6 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
-  @override
-  void dispose() {
-    super.dispose();
-    _titleController.dispose();
-  }
-
   File? _selectedImage;
   PlaceLocation? _selectedLocation;
   void savePlace() {
@@ -41,7 +35,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add places'),
+        title: Text('Add places'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),

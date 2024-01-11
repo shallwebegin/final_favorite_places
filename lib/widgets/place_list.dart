@@ -21,7 +21,7 @@ class PlaceList extends StatelessWidget {
     }
     return ListView.builder(
       itemCount: places.length,
-      itemBuilder: (context, index) => ListTile(
+      itemBuilder: (context, index) => GestureDetector(
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -29,11 +29,13 @@ class PlaceList extends StatelessWidget {
             ),
           );
         },
-        title: Text(places[index].title),
-        leading: CircleAvatar(
-          backgroundImage: FileImage(places[index].image),
+        child: ListTile(
+          title: Text(places[index].title),
+          leading: CircleAvatar(
+            backgroundImage: FileImage(places[index].image),
+          ),
+          subtitle: Text(places[index].location.address),
         ),
-        subtitle: Text(places[index].location.address),
       ),
     );
   }

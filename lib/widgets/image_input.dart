@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 class ImageInput extends StatefulWidget {
   const ImageInput({super.key, required this.onPickImage});
   final void Function(File image) onPickImage;
-
   @override
   State<ImageInput> createState() => _ImageInputState();
 }
@@ -30,7 +29,7 @@ class _ImageInputState extends State<ImageInput> {
     Widget content = TextButton.icon(
       onPressed: takePicture,
       icon: const Icon(Icons.camera),
-      label: const Text('Take picture'),
+      label: const Text('Take Picture'),
     );
     if (_selectedImage != null) {
       content = GestureDetector(
@@ -41,21 +40,16 @@ class _ImageInputState extends State<ImageInput> {
         ),
       );
     }
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 1,
-              color:
-                  Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
-            ),
-          ),
-          height: 250,
-          width: double.infinity,
-          child: content,
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
         ),
-      ],
+      ),
+      height: 250,
+      width: double.infinity,
+      child: content,
     );
   }
 }
